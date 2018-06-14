@@ -26,7 +26,6 @@ window.onload = function () {
     var meat_img =  document.querySelector('#img_cooking');
     var cutting_img =  document.querySelector('#img_cheese');
     var finish_img =  document.querySelector('#img_finish');
-    var meat_click = document.getElementById('meat_click');
     cheese_cutting.setAttribute('visible',false);
     meat_pan.setAttribute("visible",false);
     meat_img.setAttribute("visible",false);
@@ -119,12 +118,11 @@ window.onload = function () {
     }
     function animation() {
         console.log("cooking");
-    }
 
-    function meat_first() {
-        console.log("meat clicked")
+
 
     }
 
 };
+
 

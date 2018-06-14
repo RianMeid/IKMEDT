@@ -6,11 +6,12 @@
   <meta name="description" content="Hello, World! - A-Frame">
   <script src="https://aframe.io/releases/0.7.1/aframe.min.js"></script>
   <script src="Main.js"></script>
+  <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script>
 </head>
 <body>
 <a-scene log="Hello, Scene!">
   <a-box id="box" color="#000000"
-         position="-5 0 0" visible="true">
+         position="-5 0 0" visible="false">
     <a-animation begin="click"
                  attribute="position"
                  dur="3000"
@@ -19,6 +20,9 @@
     >
 
     </a-animation>
+  </a-box>
+  <a-box id="cheese_box" color="#000000"
+         position="0 0 0" visible="false">
   </a-box>
   <a-box id="box-meat" color="#000000"
          position="1.510 0.501 3.052" visible="false"></a-box>
@@ -35,53 +39,51 @@
 
   <a-assets>
     <audio id="cooking-sound" src="Sound/frying-steak-sound-effect-UrUQlApo.mp3"></audio>
-  </a-assets>
-  <a-assets>
+
     <audio id="cutting-sound" src="Sound/14288_1459962718.mp3"></audio>
-  </a-assets>
-  <a-assets>
+
     <a-asset-item id="kitchen-obj" src="obj/model.obj"></a-asset-item>
     <a-asset-item id="kitchen-mtl" src="obj/materials.mtl"></a-asset-item>
-  </a-assets>
-  <a-assets>
+
     <a-asset-item id="cutting_board" src="gltf/cutting_board.gltf"></a-asset-item>
-  </a-assets>
-  <a-assets>
+
     <a-asset-item id="knife-obj" src="obj/knife.obj"></a-asset-item>
     <a-asset-item id="knife-mtl" src="obj/knife.mtl"></a-asset-item>
+    <a-asset-item id="bread-obj" src="obj/Burger_bread.obj"></a-asset-item>
+    <a-asset-item id="bread-mtl" src="obj/Burger_bread.mtl"></a-asset-item>
+
+
+
+    <a-asset-item id="table" src="gltf/Table_Large_Rectangular_01.gltf"></a-asset-item>
+
+
+    <a-asset-item id="meat" src="gltf/Steak_01.gltf"></a-asset-item>
+
+    <a-asset-item id="cheese" src="gltf/Cheese.gltf"></a-asset-item>
+
+    <a-asset-item id="cooker" src="gltf/Oven_01.gltf"></a-asset-item>
+
+    <a-asset-item id="bread" src="gltf/Dinner roll.gltf"></a-asset-item>
+
+    <a-asset-item id="pan" src="gltf/model.gltf"></a-asset-item>
+
+    <a-asset-item id="burger" src="gltf/CHAHIN_BURGER.gltf"></a-asset-item>
+
   </a-assets>
 
-  <a-assets>
-    <a-asset-item id="table" src="gltf/Table_Large_Rectangular_01.gltf"></a-asset-item>
-  </a-assets>
-  <a-assets>
-    <a-asset-item id="meat" src="gltf/Steak_01.gltf"></a-asset-item>
-  </a-assets>
-  <a-assets>
-    <a-asset-item id="cheese" src="gltf/Cheese.gltf"></a-asset-item>
-  </a-assets>
-  <a-assets>
-    <a-asset-item id="cooker" src="gltf/Oven_01.gltf"></a-asset-item>
-  </a-assets>
-  <a-assets>
-    <a-asset-item id="bread" src="gltf/Dinner roll.gltf"></a-asset-item>
-  </a-assets>
-  <a-assets>
-    <a-asset-item id="pan" src="gltf/model.gltf"></a-asset-item>
-  </a-assets>
-  <a-assets>
-    <a-asset-item id="burger" src="gltf/CHAHIN_BURGER.gltf"></a-asset-item>
-  </a-assets>
+
+  <a-obj-model id="burger_bread" src="#bread-obj" mtl="#bread-mtl" rotation="0 0 180"
+               position="-2.853 0.010 1.693" scale="1 1 1" ></a-obj-model>
 
 
   <a-entity gltf-model="#table"
             scale="0.2 0.2 0.2" rotation="0 90 0" position="0 -1 -5"></a-entity>
-  <a-entity gltf-model="#table"
-            scale="0.2 0.2 0.2" rotation="0 90 0" position="5 -1 -5"></a-entity>
-  <a-entity gltf-model="#table"
-            scale="0.2 0.2 0.2" rotation="0 90 0" position="10 -1 -5"></a-entity>
+
+
   <a-entity gltf-model="#meat" id="meat-table" begin="click"
             scale="0.003 0.003 0.003" rotation="270 180 0" position="1.787 0.081 3.043"></a-entity>
+  <a-entity gltf-model="#meat" id="meat-burger" begin="click"
+            scale="0.002 0.002 0.002" rotation="270 180 0" position="-2.9 0.158 1.661" visible="false"></a-entity>
   <a-entity gltf-model="#cheese" id="cheese-table"
             scale="0.0005 0.0005 0.0005" position="0.910 0.072 4.645"></a-entity>
   <a-entity gltf-model="#bread" id="bread-table"
@@ -91,8 +93,7 @@
             position="0.1 -2.1 3.5" scale="1 1 1" rotation="0 180 0"></a-entity>
   <a-entity gltf-model="#meat" id="meat-pan"
             scale="0.003 0.003 0.003" rotation="270 180 0" position="-0.063 0.214 4.765"></a-entity>
-  <a-entity gltf-model="#table"
-            scale="0.2 0.2 0.2" rotation="0 90 0" position="4 -1 4"></a-entity>
+
   <a-entity gltf-model="#burger" id='burger-table' position="-1.109 -0.074 -1.422" visible="false"></a-entity>
   <a-obj-model src="#kitchen-obj" mtl="#kitchen-mtl" scale="3.6 3.6 3.6"></a-obj-model>
   <a-entity gltf-model="#cutting_board" id="board" rotation="0 90 90"
@@ -120,10 +121,254 @@
            rotation="0 0 0" position="-1 2 -2.5"></a-image>
 
 
+  <a-gui-button
+          width="2.5" height="0.75"
+          onclick="buttonActionFunction" key-code="32"
+          value="test button"
+          font-family="Helvetica"
+          margin="0 0 0.05 0"
+          visible="false"
+  >
+  </a-gui-button>
 
-  <a-camera position="-2.041 0.497 3.444">
-    <a-cursor>
-    </a-cursor>
+  <a-entity position="-3.7 1.5 0" scale="0.7 0.7 0.7" rotation="0 0 0">
+    <a-entity id="dropdownContainer" position="0 0 -1">
+
+      <a-gui-flex-container
+              flex-direction="row" justify-content="center" align-items="normal" component-padding="0.1"
+              opacity="0" width="2.5" height="0.75"
+              position="0 0.375 0" rotation="0 0 0"
+      >
+        <a-gui-icon-label-button
+                width="3" height="0.75"
+                onclick="openDropdown1"
+                icon="android-menu"
+                value="First ingredient"
+                font-family="Arial"
+                visible="true"
+        >
+          <a-animation attribute="rotation" id="dropanifirst"
+                       begin="opendropdown"
+                       dur="1000"
+                       fill="forwards"
+                       to="180 0 0"></a-animation>
+          <a-animation attribute="visible" id="dropani1first"
+                       begin="opendropdown"
+                       fill="forwards"
+                       delay="500"
+                       to="false"></a-animation>
+          <a-animation attribute="rotation" id="dropanibackfirst"
+                       begin="closedropdown"
+                       dur="1000"
+                       fill="forwards"
+                       to="0 0 0"></a-animation>
+          <a-animation attribute="visible" id="dropani1backfirst"
+                       begin="closedropdown"
+                       fill="forwards"
+                       delay="500"
+                       to="true"></a-animation>
+        </a-gui-icon-label-button>
+      </a-gui-flex-container>
+
+      <a-gui-flex-container
+              flex-direction="column" justify-content="center" align-items="normal" component-padding="0.1"
+              opacity="0" width="2.5" height="0.75"
+              position="0 0 -0.15" rotation="0 0 0" scale="1 0.001 0.001"
+              visible="false"
+      >
+        <a-gui-button
+                width="2.5" height="0.75"
+                onclick="red"
+                value="Cheese"
+                font-family="Arial"
+        >
+        </a-gui-button>
+        <a-gui-button
+                width="2.5" height="0.75"
+                onclick="blue"
+                value="Meat"
+                font-family="Arial"
+        >
+        </a-gui-button>
+        <a-gui-button
+                width="2.5" height="0.75"
+                onclick="green"
+                value="Tomatoes"
+                font-family="Arial"
+        >
+        </a-gui-button>
+        <a-gui-icon-button
+                width="0.5" height="0.5"
+                onclick="closeDropdownfirst"
+                icon="android-close"
+        >
+        </a-gui-icon-button>
+
+        <a-animation attribute="scale" id="dropvalanifirst"
+                     begin="opendropdown"
+                     dur="1000"
+                     fill="forwards"
+                     to="1 1 1"></a-animation>
+        <a-animation attribute="position" id="dropvalani1first"
+                     begin="opendropdown"
+                     dur="1000"
+                     fill="forwards"
+                     to="0 0.375 0.15"></a-animation>
+        <a-animation attribute="visible" id="dropvalani2first"
+                     begin="opendropdown"
+                     fill="forwards"
+                     dur="100"
+                     to="true"></a-animation>
+
+        <a-animation attribute="scale" id="dropvalanibackfirst"
+                     begin="closedropdown"
+                     dur="1000"
+                     fill="forwards"
+                     to="1 0.001 0.001"></a-animation>
+        <a-animation attribute="position" id="dropvalani1backfirst"
+                     begin="closedropdown"
+                     dur="1000"
+                     fill="forwards"
+                     to="0 0 -0.15"></a-animation>
+        <a-animation attribute="visible" id="dropvalani2backfirst"
+                     begin="closedropdown"
+                     fill="forwards"
+                     delay="500"
+                     dur="100"
+                     to="false"></a-animation>
+      </a-gui-flex-container>
+
+
+    </a-entity>
+  </a-entity>
+
+  <!-- Second drop down -->
+
+  <a-entity position="-1.48 1.5 0" scale="0.7 0.7 0.7" rotation="0 0 0">
+    <a-entity id="dropdownContainer" position="0 0 -1">
+
+      <a-gui-flex-container
+              flex-direction="row" justify-content="center" align-items="normal" component-padding="0.1"
+              opacity="0" width="2.5" height="0.75"
+              position="0 0.375 0" rotation="0 0 0"
+      >
+        <a-gui-icon-label-button
+                width="3" height="0.75"
+                onclick="openDropdown1"
+                icon="android-menu"
+                value="First ingredient"
+                font-family="Arial"
+                visible="true"
+        >
+          <a-animation attribute="rotation" id="dropanifirst"
+                       begin="opendropdown"
+                       dur="1000"
+                       fill="forwards"
+                       to="180 0 0"></a-animation>
+          <a-animation attribute="visible" id="dropani1first"
+                       begin="opendropdown"
+                       fill="forwards"
+                       delay="500"
+                       to="false"></a-animation>
+          <a-animation attribute="rotation" id="dropanibackfirst"
+                       begin="closedropdown"
+                       dur="1000"
+                       fill="forwards"
+                       to="0 0 0"></a-animation>
+          <a-animation attribute="visible" id="dropani1backfirst"
+                       begin="closedropdown"
+                       fill="forwards"
+                       delay="500"
+                       to="true"></a-animation>
+        </a-gui-icon-label-button>
+      </a-gui-flex-container>
+
+      <a-gui-flex-container
+              flex-direction="column" justify-content="center" align-items="normal" component-padding="0.1"
+              opacity="0" width="2.5" height="0.75"
+              position="0 0 -0.15" rotation="0 0 0" scale="1 0.001 0.001"
+              visible="false"
+      >
+        <a-gui-button
+                width="2.5" height="0.75"
+                onclick="red"
+                value="Cheese"
+                font-family="Arial"
+        >
+        </a-gui-button>
+        <a-gui-button
+                width="2.5" height="0.75"
+                onclick="blue"
+                value="Meat"
+                font-family="Arial"
+        >
+        </a-gui-button>
+        <a-gui-button
+                width="2.5" height="0.75"
+                onclick="green"
+                value="Tomatoes"
+                font-family="Arial"
+        >
+        </a-gui-button>
+        <a-gui-icon-button
+                width="0.5" height="0.5"
+                onclick="closeDropdownfirst"
+                icon="android-close"
+        >
+        </a-gui-icon-button>
+
+        <a-animation attribute="scale" id="dropvalanifirst"
+                     begin="opendropdown"
+                     dur="1000"
+                     fill="forwards"
+                     to="1 1 1"></a-animation>
+        <a-animation attribute="position" id="dropvalani1first"
+                     begin="opendropdown"
+                     dur="1000"
+                     fill="forwards"
+                     to="0 0.375 0.15"></a-animation>
+        <a-animation attribute="visible" id="dropvalani2first"
+                     begin="opendropdown"
+                     fill="forwards"
+                     dur="100"
+                     to="true"></a-animation>
+
+        <a-animation attribute="scale" id="dropvalanibackfirst"
+                     begin="closedropdown"
+                     dur="1000"
+                     fill="forwards"
+                     to="1 0.001 0.001"></a-animation>
+        <a-animation attribute="position" id="dropvalani1backfirst"
+                     begin="closedropdown"
+                     dur="1000"
+                     fill="forwards"
+                     to="0 0 -0.15"></a-animation>
+        <a-animation attribute="visible" id="dropvalani2backfirst"
+                     begin="closedropdown"
+                     fill="forwards"
+                     delay="500"
+                     dur="100"
+                     to="false"></a-animation>
+      </a-gui-flex-container>
+
+
+    </a-entity>
+  </a-entity>
+
+
+  <a-camera position="-2.041 -0.497 3.444">
+    <a-gui-cursor id="cursor"
+                  raycaster="interval: 1000; objects: [gui-interactable]"
+                  fuse="true" fuse-timeout="2000"
+                  design="ring"
+    >
+    </a-gui-cursor>
+    <a-entity cursor="fuse: true; fuseTimeout: 500"
+              position="0 0 -1"
+              geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+              material="color: black; shader: flat">
+    </a-entity>
+
     <!-- Or <a-entity cursor></a-entity> -->
   </a-camera>
 
@@ -138,5 +383,54 @@
   </a-entity>
 -->
 </a-scene>
+<script>
+    window.closeDropdownfirst = function() {
+        console.log("closedropdown");
+        var animateDropdown = document.getElementById("dropanibackfirst");
+        animateDropdown.emit('closedropdown');
+        var animateDropdown1 = document.getElementById("dropani1backfirst");
+        animateDropdown1.emit('closedropdown');
+
+        var animateDropdownVal = document.getElementById("dropvalanibackfirst");
+        var animateDropdownVal1 = document.getElementById("dropvalani1backfirst");
+        var animateDropdownVal2 = document.getElementById("dropvalani2backfirst");
+        animateDropdownVal.emit('closedropdown');
+        animateDropdownVal1.emit('closedropdown');
+        animateDropdownVal2.emit('closedropdown');
+
+    }
+    window.openDropdown1 = function() {
+        console.log("opendropdown");
+        var animateDropdown = document.getElementById("dropanifirst");
+        animateDropdown.emit('opendropdown');
+        var animateDropdown1 = document.getElementById("dropani1first");
+        animateDropdown1.emit('opendropdown');
+
+        var animateDropdownVal = document.getElementById("dropvalanifirst");
+        var animateDropdownVal1 = document.getElementById("dropvalani1first");
+        var animateDropdownVal2 = document.getElementById("dropvalani2first");
+        animateDropdownVal.emit('opendropdown');
+        animateDropdownVal1.emit('opendropdown');
+        animateDropdownVal2.emit('opendropdown');
+    }
+
+    window.red = function() {
+        var knot = document.getElementById("knot");
+        knot.setAttribute('material', 'color', '#DC2531');
+    }
+    window.green = function() {
+        var knot = document.getElementById("knot");
+
+        knot.setAttribute('material', 'color', '#69FFD2');
+    }
+    window.blue = function() {
+        var burger_meat = document.querySelector("#meat-burger");
+        burger_meat.setAttribute('visible',true);
+
+    }
+
+
+
+</script>
 </body>
 </html>
