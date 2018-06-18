@@ -9,7 +9,9 @@
   <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script>
 </head>
 <body>
-<a-scene log="Hello, Scene!">
+<a-scene log="Hello, Scene!" background="color: white">
+  <a-sky color="#ffffff"></a-sky>
+
   <a-box id="box" color="#000000"
          position="-5 0 0" visible="false">
     <a-animation begin="click"
@@ -32,10 +34,23 @@
          position="1.891 0.388 4.785" visible="false"></a-box>
   <a-box id="box-cooker" color="#000000"
          position="-0.100 0.011 4.834" visible="false"></a-box>
-  <a-box id="box-finish" color="#000000"
-         position="-1.498 0.218 -1.575" scale="2.2 2.6 4" visible="false"></a-box>
   <a-box id="box-cutting" color="#000000"
          position="-2 0.2 4.5" visible="false"></a-box>
+  <a-cylinder id="tomato_burger1" color="#ff0000"
+              position="-2.883 0.180 1.724" visible="false" scale="0.191 0.040 0.166">
+  </a-cylinder>
+  <a-cylinder id="tomato_burger2" color="#ff0000"
+         position="-2.883 0.236 1.724" visible="false" scale="0.191 0.040 0.166">
+  </a-cylinder>
+  <a-cylinder id="tomato_burger3" color="#ff0000"
+              position="-2.883 0.297 1.724" visible="false" scale="0.191 0.040 0.166">
+  </a-cylinder>
+  <a-box id="box_cheese1" color="#FFFF00"
+         position="-2.857 0.181 1.701" scale="0.376 0.019 0.311" visible="false"></a-box>
+  <a-box id="box_cheese2" color="#FFFF00"
+         position="-2.857 0.254 1.701" scale="0.376 0.019 0.311" visible="false"></a-box>
+  <a-box id="box_cheese3" color="#FFFF00"
+         position="-2.857 0.308 1.701" scale="0.376 0.019 0.311" visible="false"></a-box>
 
   <a-assets>
     <audio id="cooking-sound" src="Sound/frying-steak-sound-effect-UrUQlApo.mp3"></audio>
@@ -69,21 +84,31 @@
 
     <a-asset-item id="burger" src="gltf/CHAHIN_BURGER.gltf"></a-asset-item>
 
+    <a-asset-item id="tomato-obj" src="obj/tomato.obj"></a-asset-item>
+    <a-asset-item id="tomato-mtl" src="obj/tomato.mtl"></a-asset-item>
+
   </a-assets>
 
 
   <a-obj-model id="burger_bread" src="#bread-obj" mtl="#bread-mtl" rotation="0 0 180"
                position="-2.853 0.010 1.693" scale="1 1 1" ></a-obj-model>
+  <a-obj-model id="burger_breadtop" src="#bread-obj" mtl="#bread-mtl" rotation="-1.031 -159 1.7"
+               position="-2.853 0.431 1.693" scale="1 1 1" visible="false"></a-obj-model>
+  <a-entity >
+  <a-obj-model id="tomato_table" src="#tomato-obj" mtl="#tomato-mtl" rotation="0 0 12"
+               position="1.455 0.143 3.624" scale="1 1 1" visible="true"></a-obj-model>
 
-
-  <a-entity gltf-model="#table"
-            scale="0.2 0.2 0.2" rotation="0 90 0" position="0 -1 -5"></a-entity>
+  </a-entity>
 
 
   <a-entity gltf-model="#meat" id="meat-table" begin="click"
             scale="0.003 0.003 0.003" rotation="270 180 0" position="1.787 0.081 3.043"></a-entity>
   <a-entity gltf-model="#meat" id="meat-burger" begin="click"
             scale="0.002 0.002 0.002" rotation="270 180 0" position="-2.9 0.158 1.661" visible="false"></a-entity>
+  <a-entity gltf-model="#meat" id="meat-burger2" begin="click"
+            scale="0.002 0.002 0.002" rotation="270 180 0" position="-2.9 0.206 1.661" visible="false"></a-entity>
+  <a-entity gltf-model="#meat" id="meat-burger3" begin="click"
+            scale="0.002 0.002 0.002" rotation="270 180 0" position="-2.9 0.268 1.661" visible="false"></a-entity>
   <a-entity gltf-model="#cheese" id="cheese-table"
             scale="0.0005 0.0005 0.0005" position="0.910 0.072 4.645"></a-entity>
   <a-entity gltf-model="#bread" id="bread-table"
@@ -117,21 +142,16 @@
            rotation="0 -161 0" position="0 2.510 4.3"></a-image>
   <a-image src="images/cut-cheese.png" id="img_cheese"width="482" height="474" scale="0.003 0.003 0.003"
            rotation="0 -180 0" position="-2 2.354 4.5"></a-image>
-  <a-image src="images/finish.png" id="img_finish"width="574" height="624" scale="0.003 0.003 0.003"
-           rotation="0 0 0" position="-1 2 -2.5"></a-image>
+  <a-image src="images/burger_finished_img.png" id="img_fin"width="638" height="438" scale="0.003 0.003 0.003"
+           rotation="0 0 0" position="-2.778 0.693 0.057" visible="false"></a-image>
+  <a-image src="images/burger_setup.png" id="img_setup"width="534" height="272" scale="0.003 0.003 0.003"
+           rotation="-23 0 -0.5" position="-1.683 0.397 -0.457" visible="false"></a-image>
 
 
-  <a-gui-button
-          width="2.5" height="0.75"
-          onclick="buttonActionFunction" key-code="32"
-          value="test button"
-          font-family="Helvetica"
-          margin="0 0 0.05 0"
-          visible="false"
-  >
-  </a-gui-button>
 
-  <a-entity position="-3.7 1.5 0" scale="0.7 0.7 0.7" rotation="0 0 0">
+
+
+  <a-entity position="-3.7 1.5 0" scale="0.7 0.7 0.7" rotation="0 0 0" id='first_ingredient_button'>
     <a-entity id="dropdownContainer" position="0 0 -1">
 
       <a-gui-flex-container
@@ -244,7 +264,7 @@
 
   <!-- Second drop down -->
 
-  <a-entity position="-1.48 1.5 0" scale="0.7 0.7 0.7" rotation="0 0 0">
+  <a-entity position="-1.48 1.5 0" scale="0.7 0.7 0.7" rotation="0 0 0" id='second_ingredient_button'>
     <a-entity id="dropdownContainer" position="0 0 -1">
 
       <a-gui-flex-container
@@ -253,29 +273,29 @@
               position="0 0.375 0" rotation="0 0 0"
       >
         <a-gui-icon-label-button
-                width="3" height="0.75"
-                onclick="openDropdown1"
+                width="3.2" height="0.75"
+                onclick="openDropdown2"
                 icon="android-menu"
-                value="First ingredient"
+                value="Second ingredient"
                 font-family="Arial"
                 visible="true"
         >
-          <a-animation attribute="rotation" id="dropanifirst"
+          <a-animation attribute="rotation" id="dropanisecond"
                        begin="opendropdown"
                        dur="1000"
                        fill="forwards"
                        to="180 0 0"></a-animation>
-          <a-animation attribute="visible" id="dropani1first"
+          <a-animation attribute="visible" id="dropani1second"
                        begin="opendropdown"
                        fill="forwards"
                        delay="500"
                        to="false"></a-animation>
-          <a-animation attribute="rotation" id="dropanibackfirst"
+          <a-animation attribute="rotation" id="dropanibacksecond"
                        begin="closedropdown"
                        dur="1000"
                        fill="forwards"
                        to="0 0 0"></a-animation>
-          <a-animation attribute="visible" id="dropani1backfirst"
+          <a-animation attribute="visible" id="dropani1backsecond"
                        begin="closedropdown"
                        fill="forwards"
                        delay="500"
@@ -291,59 +311,59 @@
       >
         <a-gui-button
                 width="2.5" height="0.75"
-                onclick="red"
+                onclick="secondCheese()"
                 value="Cheese"
                 font-family="Arial"
         >
         </a-gui-button>
         <a-gui-button
                 width="2.5" height="0.75"
-                onclick="blue"
+                onclick="secondMeat()"
                 value="Meat"
                 font-family="Arial"
         >
         </a-gui-button>
         <a-gui-button
                 width="2.5" height="0.75"
-                onclick="green"
+                onclick="secondTomatoes"
                 value="Tomatoes"
                 font-family="Arial"
         >
         </a-gui-button>
         <a-gui-icon-button
                 width="0.5" height="0.5"
-                onclick="closeDropdownfirst"
+                onclick="closeDropdownsecond"
                 icon="android-close"
         >
         </a-gui-icon-button>
 
-        <a-animation attribute="scale" id="dropvalanifirst"
+        <a-animation attribute="scale" id="dropvalanisecond"
                      begin="opendropdown"
                      dur="1000"
                      fill="forwards"
                      to="1 1 1"></a-animation>
-        <a-animation attribute="position" id="dropvalani1first"
+        <a-animation attribute="position" id="dropvalani1second"
                      begin="opendropdown"
                      dur="1000"
                      fill="forwards"
                      to="0 0.375 0.15"></a-animation>
-        <a-animation attribute="visible" id="dropvalani2first"
+        <a-animation attribute="visible" id="dropvalani2second"
                      begin="opendropdown"
                      fill="forwards"
                      dur="100"
                      to="true"></a-animation>
 
-        <a-animation attribute="scale" id="dropvalanibackfirst"
+        <a-animation attribute="scale" id="dropvalanibacksecond"
                      begin="closedropdown"
                      dur="1000"
                      fill="forwards"
                      to="1 0.001 0.001"></a-animation>
-        <a-animation attribute="position" id="dropvalani1backfirst"
+        <a-animation attribute="position" id="dropvalani1backsecond"
                      begin="closedropdown"
                      dur="1000"
                      fill="forwards"
                      to="0 0 -0.15"></a-animation>
-        <a-animation attribute="visible" id="dropvalani2backfirst"
+        <a-animation attribute="visible" id="dropvalani2backsecond"
                      begin="closedropdown"
                      fill="forwards"
                      delay="500"
@@ -355,6 +375,120 @@
     </a-entity>
   </a-entity>
 
+
+  <!-- third drop down -->
+
+
+  <a-entity position="0.855 1.5 0" scale="0.7 0.7 0.7" rotation="0 0 0" id='third_ingredient_button'>
+    <a-entity id="dropdownContainer" position="0 0 -1">
+
+      <a-gui-flex-container
+              flex-direction="row" justify-content="center" align-items="normal" component-padding="0.1"
+              opacity="0" width="2.5" height="0.75"
+              position="0 0.375 0" rotation="0 0 0"
+      >
+        <a-gui-icon-label-button
+                width="3.2" height="0.75"
+                onclick="openDropdown3"
+                icon="android-menu"
+                value="Third ingredient"
+                font-family="Arial"
+                visible="true"
+        >
+          <a-animation attribute="rotation" id="dropanithird"
+                       begin="opendropdown"
+                       dur="1000"
+                       fill="forwards"
+                       to="180 0 0"></a-animation>
+          <a-animation attribute="visible" id="dropani1third"
+                       begin="opendropdown"
+                       fill="forwards"
+                       delay="500"
+                       to="false"></a-animation>
+          <a-animation attribute="rotation" id="dropanibackthird"
+                       begin="closedropdown"
+                       dur="1000"
+                       fill="forwards"
+                       to="0 0 0"></a-animation>
+          <a-animation attribute="visible" id="dropani1backthird"
+                       begin="closedropdown"
+                       fill="forwards"
+                       delay="500"
+                       to="true"></a-animation>
+        </a-gui-icon-label-button>
+      </a-gui-flex-container>
+
+      <a-gui-flex-container
+              flex-direction="column" justify-content="center" align-items="normal" component-padding="0.1"
+              opacity="0" width="2.5" height="0.75"
+              position="0 0 -0.15" rotation="0 0 0" scale="1 0.001 0.001"
+              visible="false"
+      >
+        <a-gui-button
+                width="2.5" height="0.75"
+                onclick="thirdCheese()"
+                value="Cheese"
+                font-family="Arial"
+        >
+        </a-gui-button>
+        <a-gui-button
+                width="2.5" height="0.75"
+                onclick="thirdMeat()"
+                value="Meat"
+                font-family="Arial"
+        >
+        </a-gui-button>
+        <a-gui-button
+                width="2.5" height="0.75"
+                onclick="thirdTomatoes()"
+                value="Tomatoes"
+                font-family="Arial"
+        >
+        </a-gui-button>
+        <a-gui-icon-button
+                width="0.5" height="0.5"
+                onclick="closeDropdownthird"
+                icon="android-close"
+        >
+        </a-gui-icon-button>
+
+        <a-animation attribute="scale" id="dropvalanithird"
+                     begin="opendropdown"
+                     dur="1000"
+                     fill="forwards"
+                     to="1 1 1"></a-animation>
+        <a-animation attribute="position" id="dropvalani1third"
+                     begin="opendropdown"
+                     dur="1000"
+                     fill="forwards"
+                     to="0 0.375 0.15"></a-animation>
+        <a-animation attribute="visible" id="dropvalani2third"
+                     begin="opendropdown"
+                     fill="forwards"
+                     dur="100"
+                     to="true"></a-animation>
+
+        <a-animation attribute="scale" id="dropvalanibackthird"
+                     begin="closedropdown"
+                     dur="1000"
+                     fill="forwards"
+                     to="1 0.001 0.001"></a-animation>
+        <a-animation attribute="position" id="dropvalani1backthird"
+                     begin="closedropdown"
+                     dur="1000"
+                     fill="forwards"
+                     to="0 0 -0.15"></a-animation>
+        <a-animation attribute="visible" id="dropvalani2backthird"
+                     begin="closedropdown"
+                     fill="forwards"
+                     delay="500"
+                     dur="100"
+                     to="false"></a-animation>
+      </a-gui-flex-container>
+
+
+    </a-entity>
+  </a-entity>
 
   <a-camera position="-2.041 -0.497 3.444">
     <a-gui-cursor id="cursor"
@@ -384,6 +518,9 @@
 -->
 </a-scene>
 <script>
+    var meat_placed = false;
+    var cheese_placed = false;
+    var tomato_placed = false;
     window.closeDropdownfirst = function() {
         console.log("closedropdown");
         var animateDropdown = document.getElementById("dropanibackfirst");
@@ -394,6 +531,36 @@
         var animateDropdownVal = document.getElementById("dropvalanibackfirst");
         var animateDropdownVal1 = document.getElementById("dropvalani1backfirst");
         var animateDropdownVal2 = document.getElementById("dropvalani2backfirst");
+        animateDropdownVal.emit('closedropdown');
+        animateDropdownVal1.emit('closedropdown');
+        animateDropdownVal2.emit('closedropdown');
+
+    }
+    window.closeDropdownsecond = function() {
+        console.log("closedropdown");
+        var animateDropdown = document.getElementById("dropanibacksecond");
+        animateDropdown.emit('closedropdown');
+        var animateDropdown1 = document.getElementById("dropani1backsecond");
+        animateDropdown1.emit('closedropdown');
+
+        var animateDropdownVal = document.getElementById("dropvalanibacksecond");
+        var animateDropdownVal1 = document.getElementById("dropvalani1backsecond");
+        var animateDropdownVal2 = document.getElementById("dropvalani2backsecond");
+        animateDropdownVal.emit('closedropdown');
+        animateDropdownVal1.emit('closedropdown');
+        animateDropdownVal2.emit('closedropdown');
+
+    }
+    window.closeDropdownthird = function() {
+        console.log("closedropdown");
+        var animateDropdown = document.getElementById("dropanibackthird");
+        animateDropdown.emit('closedropdown');
+        var animateDropdown1 = document.getElementById("dropani1backthird");
+        animateDropdown1.emit('closedropdown');
+
+        var animateDropdownVal = document.getElementById("dropvalanibackthird");
+        var animateDropdownVal1 = document.getElementById("dropvalani1backthird");
+        var animateDropdownVal2 = document.getElementById("dropvalani2backthird");
         animateDropdownVal.emit('closedropdown');
         animateDropdownVal1.emit('closedropdown');
         animateDropdownVal2.emit('closedropdown');
@@ -413,20 +580,176 @@
         animateDropdownVal1.emit('opendropdown');
         animateDropdownVal2.emit('opendropdown');
     }
+    window.openDropdown2 = function() {
+        console.log("opendropdown");
+        var animateDropdown = document.getElementById("dropanisecond");
+        animateDropdown.emit('opendropdown');
+        var animateDropdown1 = document.getElementById("dropani1second");
+        animateDropdown1.emit('opendropdown');
 
+        var animateDropdownVal = document.getElementById("dropvalanisecond");
+        var animateDropdownVal1 = document.getElementById("dropvalani1second");
+        var animateDropdownVal2 = document.getElementById("dropvalani2second");
+        animateDropdownVal.emit('opendropdown');
+        animateDropdownVal1.emit('opendropdown');
+        animateDropdownVal2.emit('opendropdown');
+    }
+    window.openDropdown3 = function() {
+        console.log("opendropdown");
+        var animateDropdown = document.getElementById("dropanithird");
+        animateDropdown.emit('opendropdown');
+        var animateDropdown1 = document.getElementById("dropani1third");
+        animateDropdown1.emit('opendropdown');
+
+        var animateDropdownVal = document.getElementById("dropvalanithird");
+        var animateDropdownVal1 = document.getElementById("dropvalani1third");
+        var animateDropdownVal2 = document.getElementById("dropvalani2third");
+        animateDropdownVal.emit('opendropdown');
+        animateDropdownVal1.emit('opendropdown');
+        animateDropdownVal2.emit('opendropdown');
+    }
     window.red = function() {
-        var knot = document.getElementById("knot");
-        knot.setAttribute('material', 'color', '#DC2531');
+        if (cheese_placed == false){
+            var box = document.querySelector('#box_cheese1');
+
+            box.setAttribute('visible',true);
+            cheese_placed = true;
+        }
+        if (cheese_placed == true && tomato_placed == true && meat_placed == true ){
+            var bread = document.querySelector('#burger_breadtop');
+            var img_done =  document.querySelector('#img_fin');
+            var img_progess =  document.querySelector('#img_setup');
+            img_progess.setAttribute('visible',false);
+            img_done.setAttribute('visible',true);
+
+            bread.setAttribute('visible',true);
+        }
     }
     window.green = function() {
-        var knot = document.getElementById("knot");
+        if (tomato_placed == false){
+            var box = document.querySelector('#tomato_burger1');
 
-        knot.setAttribute('material', 'color', '#69FFD2');
+            box.setAttribute('visible',true);
+            tomato_placed = true;
+        }
+        if (cheese_placed == true && tomato_placed == true && meat_placed == true ){
+            var bread = document.querySelector('#burger_breadtop');
+            var img_done =  document.querySelector('#img_fin');
+            var img_progess =  document.querySelector('#img_setup');
+            img_progess.setAttribute('visible',false);
+            img_done.setAttribute('visible',true);
+            bread.setAttribute('visible',true);
+        }
     }
     window.blue = function() {
-        var burger_meat = document.querySelector("#meat-burger");
-        burger_meat.setAttribute('visible',true);
+        if (meat_placed == false){
+            var burger_meat = document.querySelector("#meat-burger");
+            burger_meat.setAttribute('visible',true);
+            meat_placed = true;
+        }
+        if (cheese_placed == true && tomato_placed == true && meat_placed == true ){
+            var bread = document.querySelector('#burger_breadtop');
+            var img_done =  document.querySelector('#img_fin');
+            var img_progess =  document.querySelector('#img_setup');
+            img_progess.setAttribute('visible',false);
+            img_done.setAttribute('visible',true);
+            bread.setAttribute('visible',true);
+        }
+    }
+    window.secondCheese = function() {
+        if (cheese_placed == false){
+            var box = document.querySelector('#box_cheese2');
 
+            box.setAttribute('visible',true);
+            cheese_placed = true;
+        }
+        if (cheese_placed == true && tomato_placed == true && meat_placed == true ){
+            var bread = document.querySelector('#burger_breadtop');
+            var img_done =  document.querySelector('#img_fin');
+            var img_progess =  document.querySelector('#img_setup');
+            img_progess.setAttribute('visible',false);
+            img_done.setAttribute('visible',true);
+            bread.setAttribute('visible',true);
+        }
+    }
+    window.secondTomatoes = function() {
+        if (tomato_placed == false){
+            var box = document.querySelector('#tomato_burger2');
+
+            box.setAttribute('visible',true);
+            tomato_placed = true;
+        }
+        if (cheese_placed == true && tomato_placed == true && meat_placed == true ){
+            var bread = document.querySelector('#burger_breadtop');
+            var img_done =  document.querySelector('#img_fin');
+            var img_progess =  document.querySelector('#img_setup');
+            img_progess.setAttribute('visible',false);
+            img_done.setAttribute('visible',true);
+            bread.setAttribute('visible',true);
+        }
+    }
+    window.secondMeat = function() {
+        if (meat_placed == false){
+            var burger_meat = document.querySelector("#meat-burger2");
+            burger_meat.setAttribute('visible',true);
+            meat_placed = true;
+        }
+        if (cheese_placed == true && tomato_placed == true && meat_placed == true ){
+            var bread = document.querySelector('#burger_breadtop');
+            var img_done =  document.querySelector('#img_fin');
+            var img_progess =  document.querySelector('#img_setup');
+            img_progess.setAttribute('visible',false);
+            img_done.setAttribute('visible',true);
+            bread.setAttribute('visible',true);
+        }
+
+    }
+    window.thirdCheese = function() {
+        if (cheese_placed == false){
+            var box = document.querySelector('#box_cheese3');
+
+            box.setAttribute('visible',true);
+            cheese_placed = true;
+        }
+        if (cheese_placed == true && tomato_placed == true && meat_placed == true ){
+            var bread = document.querySelector('#burger_breadtop');
+            var img_done =  document.querySelector('#img_fin');
+            var img_progess =  document.querySelector('#img_setup');
+            img_progess.setAttribute('visible',false);
+            img_done.setAttribute('visible',true);
+            bread.setAttribute('visible',true);
+        }
+    }
+    window.thirdTomatoes = function() {
+        if (tomato_placed == false){
+            var box = document.querySelector('#tomato_burger3');
+
+            box.setAttribute('visible',true);
+            tomato_placed = true;
+        }
+        if (cheese_placed == true && tomato_placed == true && meat_placed == true ){
+            var bread = document.querySelector('#burger_breadtop');
+            var img_done =  document.querySelector('#img_fin');
+            var img_progess =  document.querySelector('#img_setup');
+            img_progess.setAttribute('visible',false);
+            img_done.setAttribute('visible',true);
+            bread.setAttribute('visible',true);
+        }
+    }
+    window.thirdMeat = function() {
+        if (meat_placed == false){
+            var burger_meat = document.querySelector("#meat-burger3");
+            burger_meat.setAttribute('visible',true);
+            meat_placed = true;
+        }
+        if (cheese_placed == true && tomato_placed == true && meat_placed == true ){
+            var bread = document.querySelector('#burger_breadtop');
+            var img_done =  document.querySelector('#img_fin');
+            var img_progess =  document.querySelector('#img_setup');
+            img_progess.setAttribute('visible',false);
+            img_done.setAttribute('visible',true);
+            bread.setAttribute('visible',true);
+        }
     }
 
 

@@ -4,9 +4,14 @@ window.onload = function () {
     var table_bread_pickedup = false;
     var cooked = false;
     var cheese_cutted = false;
+    var burger_table = document.querySelector('#burger_bread');
+    var button1 = document.querySelector('#first_ingredient_button');
+    var button2 = document.querySelector('#second_ingredient_button');
+    var button3 = document.querySelector('#third_ingredient_button');
     var box = document.querySelector('#box');
     var meat_table = document.querySelector("#meat-table");
     var cheese_table = document.querySelector("#cheese-table");
+    var tomato_table = document.querySelector("#tomato_table");
     var bread_table = document.querySelector("#bread-table");
     var meat_pan = document.querySelector("#meat-pan");
     var box_meat = document.querySelector("#box-meat");
@@ -25,13 +30,16 @@ window.onload = function () {
     var intro_img =  document.querySelector('#img_intro');
     var meat_img =  document.querySelector('#img_cooking');
     var cutting_img =  document.querySelector('#img_cheese');
-    var finish_img =  document.querySelector('#img_finish');
+    var img_progess =  document.querySelector('#img_setup');
     var meat_click = document.getElementById('meat_click');
     cheese_cutting.setAttribute('visible',false);
     meat_pan.setAttribute("visible",false);
     meat_img.setAttribute("visible",false);
     cutting_img.setAttribute("visible",false);
-    finish_img.setAttribute("visible",false);
+    button1.setAttribute("visible",false);
+    button2.setAttribute("visible",false);
+    button3.setAttribute("visible",false);
+    burger_table.setAttribute("visible",false);
 
 
 
@@ -57,6 +65,8 @@ window.onload = function () {
     box_cheese.addEventListener('click', function () {
         console.log("meat click");
         cheese_table.setAttribute('visible',false);
+        tomato_table.setAttribute('visible',false);
+        console.log(tomato_table);
         table_cheese_pickedup = true;
         cutting_img.setAttribute('visible',true);
 
@@ -65,7 +75,13 @@ window.onload = function () {
         console.log("meat click");
         bread_table.setAttribute('visible',false);
         table_bread_pickedup = true;
-
+        if (cooked == true && cheese_cutted == true && table_bread_pickedup == true){
+            button1.setAttribute("visible",true);
+            button2.setAttribute("visible",true);
+            button3.setAttribute("visible",true);
+            burger_table.setAttribute("visible",true);
+            img_progess.setAttribute("visible",true);
+        }
     })
 
     box_cooker.addEventListener('click', function () {
@@ -76,17 +92,17 @@ window.onload = function () {
             audio.play();
             setTimeout(cooking, 10000)
         }
-
-    })
-
-    box_finishd.addEventListener('click', function () {
-        if (cooked == true && table_bread_pickedup == true && cheese_cutted == true ){
-            console.log("mburger made");
-            burger_done.setAttribute("visible",true);
+        if (cooked == true && cheese_cutted == true && table_bread_pickedup == true){
+            button1.setAttribute("visible",true);
+            button2.setAttribute("visible",true);
+            button3.setAttribute("visible",true);
+            burger_table.setAttribute("visible",true);
+            img_progess.setAttribute("visible",true);
         }
 
-
     })
+
+
 
     box_cutting.addEventListener('click', function () {
         console.log('cutting');
@@ -97,6 +113,14 @@ window.onload = function () {
             setTimeout(cutting, 10000)
         }
 
+        if (cooked == true && cheese_cutted == true && table_bread_pickedup == true){
+            button1.setAttribute("visible",true);
+            button2.setAttribute("visible",true);
+            button3.setAttribute("visible",true);
+            burger_table.setAttribute("visible",true);
+            img_progess.setAttribute("visible",true);
+        }
+
     })
 
     function cooking() {
@@ -104,8 +128,14 @@ window.onload = function () {
 
         meat_pan.setAttribute('visible',false);
         cooked = true;
-        finish_img.setAttribute("visible",true);
         meat_img.setAttribute("visible",false);
+        if (cooked == true && cheese_cutted == true && table_bread_pickedup == true){
+            button1.setAttribute("visible",true);
+            button2.setAttribute("visible",true);
+            button3.setAttribute("visible",true);
+            burger_table.setAttribute("visible",true);
+            img_progess.setAttribute("visible",true);
+        }
 
     }
     function cutting() {
@@ -116,6 +146,13 @@ window.onload = function () {
         cheese_cutting.setAttribute('visible',false);
         cheese_cutted = true;
         cutting_img.setAttribute("visible",false);
+        if (cooked == true && cheese_cutted == true && table_bread_pickedup == true){
+            button1.setAttribute("visible",true);
+            button2.setAttribute("visible",true);
+            button3.setAttribute("visible",true);
+            burger_table.setAttribute("visible",true);
+            img_progess.setAttribute("visible",true);
+        }
     }
     function animation() {
         console.log("cooking");
