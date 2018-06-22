@@ -86,6 +86,10 @@
 
     <a-asset-item id="tomato-obj" src="obj/tomato.obj"></a-asset-item>
     <a-asset-item id="tomato-mtl" src="obj/tomato.mtl"></a-asset-item>
+    <a-asset-item id="uncooked-obj" src="obj/uncooked_breast.obj"></a-asset-item>
+    <a-asset-item id="uncooked-mtl" src="obj/uncooked_breast.mtl"></a-asset-item>
+    <a-asset-item id="cooked-obj" src="obj/cooked_breast.obj"></a-asset-item>
+    <a-asset-item id="cooked-mtl" src="obj/cooked_breast.mtl"></a-asset-item>
 
   </a-assets>
 
@@ -100,15 +104,30 @@
 
   </a-entity>
 
+  <a-obj-model id="meat-table" src="#uncooked-obj" mtl="#uncooked-mtl"
+               position="1.787 0.081 3.043" scale="0.45 0.45 0.45" ></a-obj-model>
 
-  <a-entity gltf-model="#meat" id="meat-table" begin="click"
-            scale="0.003 0.003 0.003" rotation="270 180 0" position="1.787 0.081 3.043"></a-entity>
-  <a-entity gltf-model="#meat" id="meat-burger" begin="click"
+
+  <a-entity gltf-model="#meat" id="meat-tableold" begin="click"
+            scale="0.003 0.003 0.003" rotation="270 180 0" position="1.787 0.081 3.043" visible="false"></a-entity>
+
+  <a-obj-model id="meat-burger" src="#cooked-obj" mtl="#cooked-mtl"
+               position="-2.9 0.158 1.661" scale="5 3 5.2" visible="false"></a-obj-model>
+  <a-obj-model id="meat-burger2" src="#cooked-obj" mtl="#cooked-mtl"
+               position="-2.9 0.206 1.661" scale="6 4 6.2" visible="false"></a-obj-model>
+  <a-obj-model id="meat-burger3" src="#cooked-obj" mtl="#cooked-mtl"
+               position="-2.9 0.268 1.661" scale="5 3 5.2" visible="false"></a-obj-model>
+
+
+
+  <a-entity gltf-model="#meat" id="meat-burgerold" begin="click"
             scale="0.002 0.002 0.002" rotation="270 180 0" position="-2.9 0.158 1.661" visible="false"></a-entity>
-  <a-entity gltf-model="#meat" id="meat-burger2" begin="click"
+  <a-entity gltf-model="#meat" id="meat-burger2old" begin="click"
             scale="0.002 0.002 0.002" rotation="270 180 0" position="-2.9 0.206 1.661" visible="false"></a-entity>
-  <a-entity gltf-model="#meat" id="meat-burger3" begin="click"
+  <a-entity gltf-model="#meat" id="meat-burger3old" begin="click"
             scale="0.002 0.002 0.002" rotation="270 180 0" position="-2.9 0.268 1.661" visible="false"></a-entity>
+
+
   <a-entity gltf-model="#cheese" id="cheese-table"
             scale="0.0005 0.0005 0.0005" position="0.910 0.072 4.645"></a-entity>
   <a-entity gltf-model="#bread" id="bread-table"
@@ -116,13 +135,22 @@
 
   <a-entity gltf-model="#pan" id="pan"
             position="0.1 -2.1 3.5" scale="1 1 1" rotation="0 180 0"></a-entity>
-  <a-entity gltf-model="#meat" id="meat-pan"
-            scale="0.003 0.003 0.003" rotation="270 180 0" position="-0.063 0.214 4.765"></a-entity>
+
+  <a-obj-model id="meat-pan" src="#uncooked-obj" mtl="#uncooked-mtl"
+               position="-0.063 0.281 4.765" scale="0.45 0.45 0.45" visible="false"></a-obj-model>
+
+  <a-entity gltf-model="#meat" id="meat-panold"
+            scale="0.003 0.003 0.003" rotation="270 180 0" position="-0.063 0.214 4.765" visible="false"></a-entity>
+
+
+
+
 
   <a-entity gltf-model="#burger" id='burger-table' position="-1.109 -0.074 -1.422" visible="false"></a-entity>
   <a-obj-model src="#kitchen-obj" mtl="#kitchen-mtl" scale="3.6 3.6 3.6"></a-obj-model>
   <a-entity gltf-model="#cutting_board" id="board" rotation="0 90 90"
             scale="0.2 0.2 0.2" position="-2 0.2 4.5"></a-entity>
+
   <a-obj-model id="knife" src="#knife-obj" mtl="#knife-mtl" rotation="270 -90 0"
                position="-2 0.3 4.5" scale="0.6 0.6 0.6" visible="false"><a-animation
           attribute="position"
@@ -131,6 +159,8 @@
           to="-2 0.3 4.5"
           repeat="indefinite"
   ></a-animation></a-obj-model>
+
+
   <a-entity gltf-model="#cheese" id="cheese-cutting"
             scale="0.0005 0.0005 0.0005" position="-2.9 0.2 5.7"></a-entity>
   <a-entity id='cooking-meat-sound' sound="src: #cooking-sound"></a-entity>
@@ -492,12 +522,12 @@
 
   <a-camera position="-2.041 -0.497 3.444">
     <a-gui-cursor id="cursor"
-                  raycaster="interval: 1000; objects: [gui-interactable]"
+                  raycaster="interval: 2000; objects: [gui-interactable]"
                   fuse="true" fuse-timeout="2000"
                   design="ring"
     >
     </a-gui-cursor>
-    <a-entity cursor="fuse: true; fuseTimeout: 500"
+    <a-entity cursor="fuse: true; fuseTimeout: 2000"
               position="0 0 -1"
               geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
               material="color: black; shader: flat">

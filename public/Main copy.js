@@ -49,8 +49,6 @@ window.onload = function () {
         console.log("meat click");
         meat_table.setAttribute('visible',false);
         table_meat_pickedup = true;
-        intro_img.setAttribute('visible',false);
-        meat_img.setAttribute('visible',true);
 
     })
     box_cheese.addEventListener('click', function () {
